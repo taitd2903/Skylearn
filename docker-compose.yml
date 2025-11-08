@@ -1,0 +1,23 @@
+version: "3"
+services:
+  skylearn-app:
+    image: skylearn-app:latest
+    ports:
+      - "8000:8000"
+    restart: always
+    networks:
+      - learn-network
+    depends_on:
+      - skylearn-db
+  skylearn-db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=1
+    networks:   
+      - learn-network
+networks:
+  learn-network:
+  
